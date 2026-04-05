@@ -21,13 +21,15 @@
   .pay{background:#111;border-radius:12px;padding:20px;margin:16px 0}
   .pay h3{color:#4fc3f7;margin-bottom:12px}
   .pay p{color:#888;font-size:0.9em;line-height:1.6}
-  .addr{background:#0d1117;border:1px solid #238636;border-radius:8px;padding:12px;word-break:break-all;font-family:monospace;color:#7cb342;font-size:0.85em;margin:10px 0}
+  .addr{background:#0d1117;border:1px solid #238636;border-radius:8px;padding:12px;word-break:break-all;font-family:monospace;color:#7cb342;font-size:0.85em;margin:10px 0;cursor:pointer;user-select:all}
+  .addr:hover{background:#0d2811}
   .cta{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#4fc3f7,#0288d1);border:none;border-radius:10px;color:#000;font-size:1.1em;font-weight:bold;text-align:center;text-decoration:none;margin:20px 0}
   .cta:hover{background:linear-gradient(135deg,#81d4fa,#03a9f4)}
   .tm{text-align:center;color:#444;font-size:0.8em;margin-top:24px}
   .tag{display:inline-block;background:#4fc3f7;color:#000;padding:4px 14px;border-radius:20px;font-size:0.8em;font-weight:bold;margin-bottom:10px}
   .status{background:#111;border-left:3px solid #4fc3f7;padding:12px 16px;margin:16px 0;border-radius:0 8px 8px 0;font-size:0.88em;color:#888}
   .status strong{color:#4fc3f7}
+  .copy-tip{color:#555;font-size:0.8em;text-align:center;margin-top:6px}
 </style>
 </head>
 <body>
@@ -57,9 +59,10 @@
 
   <div class="pay">
     <h3>💰 USDT TRC20 支付</h3>
-    <p>复制以下地址，转账任意金额，备注您的邮箱<br>
-    付款后截图发给 <strong>@xydlb_bot</strong></p>
-    <div class="addr">TRC20地址：请向 @xydlb_bot 获取</div>
+    <p>复制以下地址，向OKX/币安/任何支持TRC20的钱包转账USDT<br>
+    <strong style="color:#ccc">备注填写您的邮箱</strong>，付款后截图发给 <strong>@xydlb_bot</strong></p>
+    <div class="addr" onclick="copyAddr()">TCq42FmLeupJjf6YbTWXad5B2pDGJwF3zF</div>
+    <p class="copy-tip">👆 点击地址即可复制</p>
     <p style="color:#555;margin-top:10px;font-size:0.85em">汇率按实时 USDT 价格计算</p>
   </div>
 
@@ -70,5 +73,17 @@
     <p style="margin-top:6px;color:#333">退订自由 · 无任何附加条件</p>
   </div>
 </div>
+<script>
+function copyAddr(){
+  navigator.clipboard.writeText('TCq42FmLeupJjf6YbTWXad5B2pDGJwF3zF');
+  var el = document.querySelector('.addr');
+  el.style.color = '#fff';
+  el.textContent = '✅ 已复制！去粘贴转账吧';
+  setTimeout(function(){
+    el.style.color = '#7cb342';
+    el.textContent = 'TCq42FmLeupJjf6YbTWXad5B2pDGJwF3zF';
+  },2000);
+}
+</script>
 </body>
 </html>
