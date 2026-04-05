@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI投资情报站 - 订阅</title>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;background:#0a0a0f;color:#e8e8e8;margin:0;padding:40px 20px;min-height:100vh}
+  .wrap{max-width:600px;margin:0 auto}
+  h1{color:#4fc3f7;font-size:2em;text-align:center;margin-bottom:8px}
+  .sub{color:#888;text-align:center;font-size:1.1em;margin-bottom:32px}
+  .price-box{background:linear-gradient(135deg,#1a2a1a,#0d1f0d);border:1px solid #2d5a2d;border-radius:16px;padding:32px;text-align:center;margin:24px 0}
+  .price{font-size:3em;font-weight:bold;color:#4fc3f7}
+  .price small{font-size:0.4em;color:#888}
+  .period{color:#7cb342;font-size:1.2em;margin:8px 0}
+  .feat{background:#111;border-radius:12px;padding:24px;margin:20px 0}
+  .feat li{list-style:none;padding:10px 0;border-bottom:1px solid #222;color:#ccc}
+  .feat li:last-child{border:none}
+  .feat li::before{content:"✅ ";color:#4fc3f7}
+  form{background:#111;border-radius:12px;padding:24px;margin:20px 0}
+  label{display:block;color:#888;margin-bottom:6px;font-size:0.9em}
+  input{width:100%;padding:14px;background:#1a1a1a;border:1px solid #333;border-radius:8px;color:#fff;font-size:1em;margin-bottom:16px;box-sizing:border-box}
+  input:focus{outline:none;border-color:#4fc3f7}
+  button{width:100%;padding:16px;background:linear-gradient(135deg,#4fc3f7,#0288d1);border:none;border-radius:10px;color:#000;font-size:1.1em;font-weight:bold;cursor:pointer}
+  button:hover{background:linear-gradient(135deg,#81d4fa,#03a9f4)}
+  .crypto{background:#1a1a1a;border-radius:10px;padding:20px;margin:20px 0;font-size:0.9em}
+  .crypto h3{color:#4fc3f7;margin-bottom:12px;font-size:1em}
+  .crypto p{color:#888;margin:6px 0;word-break:break-all;font-size:0.85em}
+  .tm{text-align:center;color:#444;font-size:0.8em;margin-top:32px}
+  .tag{background:#4fc3f7;color:#000;padding:4px 12px;border-radius:20px;font-size:0.75em;font-weight:bold;display:inline-block;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="text-align:center"><span class="tag">🦞 AI驱动</span></div>
+  <h1>AI投资情报站</h1>
+  <p class="sub">每日17:00 · 机构级投资内参 · 适合认真做投资的人</p>
+
+  <div class="price-box">
+    <div class="price">¥99<small>/月</small></div>
+    <div class="period">≈ $9.9 USD · 首周免费试用</div>
+    <div style="color:#666;font-size:0.85em;margin-top:8px">随时取消 · 无套路</div>
+  </div>
+
+  <div class="feat">
+    <li>每日市场六维覆盖（SPY/QQQ/BTC/ETH/黄金/A股）</li>
+    <li>AI提炼每日3大核心事件</li>
+    <li>具体标的 + 具体方向建议</li>
+    <li>风险预警 + 行动清单</li>
+    <li>突发行情即时推送</li>
+  </div>
+
+  <div class="crypto">
+    <h3>💰 支付方式</h3>
+    <p><strong>USDT TRC20</strong>（推荐，最快）：</p>
+    <p style="background:#222;padding:10px;border-radius:6px;word-break:break-all;font-family:monospace;color:#4fc3f7" id="addr">TKVE...（订阅后显示）</p>
+    <p style="margin-top:12px"><strong>备注填写您邮箱</strong>，付款后截图发给 @xydlb_bot 开通</p>
+    <p style="color:#555;margin-top:8px">* 汇率按实时 USDT 价格计算</p>
+  </div>
+
+  <form id="subForm">
+    <label>📧 您的邮箱（订阅后接收报告）</label>
+    <input type="email" id="email" placeholder="your@email.com" required>
+    <button type="submit" onclick="submitForm(event)">👈 订阅 AI投资情报站</button>
+  </form>
+
+  <div class="tm">
+    <p>AI投资情报站 · 每日17:00准时推送</p>
+    <p style="margin-top:4px">有问题？TG: @xydlb_bot</p>
+  </div>
+</div>
+
+<script>
+let addr = 'TRC20地址请向 @xydlb_bot 获取';
+document.getElementById('addr').textContent = '请先填写邮箱并提交，获取支付地址';
+function submitForm(e){
+  e.preventDefault();
+  var email = document.getElementById('email').value;
+  if(!email.includes('@')){alert('请填写正确邮箱');return}
+  document.getElementById('addr').textContent = addr;
+  document.getElementById('addr').style.background = '#1a2a1a';
+  document.getElementById('addr').style.color = '#4fc3f7';
+  alert('✅ 订阅信息已记录！\n\n请向 @xydlb_bot 发送:\n1. 您的邮箱: ' + email + '\n2. USDT付款截图\n\n我们将在10分钟内开通！');
+  // 发送到Google Sheet
+  google.script.run.withSuccessHandler().addSubscriber(email, new Date().toISOString());
+}
+</script>
+</body>
+</html>
